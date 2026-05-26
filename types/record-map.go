@@ -34,6 +34,7 @@ type RecordField struct {
 	Value      string
 	DataType   string
 	Unique     bool
+	Expression string
 }
 
 type FieldFilter struct {

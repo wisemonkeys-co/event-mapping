@@ -34,6 +34,7 @@ type FieldMapping struct {
 	Format      string   `json:"format"`
 	Filter      *Filter  `json:"filter" bson:"filter"`
 	DataType    string   `json:"dataType" bson:"dataType"`
+	Expression  string   `json:"expression" bson:"expression"`
 }
 
 type Filter struct {

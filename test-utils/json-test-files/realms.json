@@ -535,165 +535,6 @@
         ]
       },
       {
-        "name": "test-split-array",
-        "tpName": "test",
-        "description": "Test the split event based on array items",
-        "sortIndex": 2,
-        "fieldMapping": [
-          {
-            "index": 0,
-            "name": "id",
-            "description": "",
-            "remoteName": "_id",
-            "types": [
-              "id"
-            ],
-            "format": "",
-            "dataType": "string"
-          },
-          {
-            "index": 1,
-            "name": "date",
-            "description": "",
-            "remoteName": "metadata.created",
-            "types": [
-              "date"
-            ],
-            "format": "2006-01-02T15:04:05.999",
-            "dataType": "date"
-          },
-          {
-            "index": 2,
-            "name": "client",
-            "description": "",
-            "remoteName": "client.name",
-            "types": [
-              "customer"
-            ],
-            "format": "",
-            "dataType": "string"
-          },
-          {
-            "index": 3,
-            "name": "service",
-            "description": "",
-            "remoteName": "contracts.$.data.product",
-            "types": [
-              "service"
-            ],
-            "format": "",
-            "dataType": "string"
-          },
-          {
-            "index": 4,
-            "name": "accountCode",
-            "description": "",
-            "remoteName": "accountCode",
-            "types": [
-              "modifier"
-            ],
-            "format": "",
-            "dataType": "string"
-          },
-          {
-            "index": 5,
-            "name": "serviceValue",
-            "description": "",
-            "remoteName": "contracts.$.value",
-            "types": [
-              "metric"
-            ],
-            "format": "",
-            "dataType": "float"
-          }
-        ]
-      },
-      {
-        "name": "test-split-array-multi-index",
-        "tpName": "test",
-        "description": "Test the split event based on array items",
-        "sortIndex": 2,
-        "fieldMapping": [
-          {
-            "index": 0,
-            "name": "id",
-            "description": "",
-            "remoteName": "_id",
-            "types": [
-              "id"
-            ],
-            "format": "",
-            "dataType": "string"
-          },
-          {
-            "index": 1,
-            "name": "date",
-            "description": "",
-            "remoteName": "metadata.created",
-            "types": [
-              "date"
-            ],
-            "format": "2006-01-02T15:04:05.999",
-            "dataType": "date"
-          },
-          {
-            "index": 2,
-            "name": "client",
-            "description": "",
-            "remoteName": "client.name",
-            "types": [
-              "customer"
-            ],
-            "format": "",
-            "dataType": "string"
-          },
-          {
-            "index": 3,
-            "name": "service",
-            "description": "",
-            "remoteName": "contracts.$.data.product",
-            "types": [
-              "service"
-            ],
-            "format": "",
-            "dataType": "string"
-          },
-          {
-            "index": 4,
-            "name": "accountCode",
-            "description": "",
-            "remoteName": "accountCode",
-            "types": [
-              "modifier"
-            ],
-            "format": "",
-            "dataType": "string"
-          },
-          {
-            "index": 5,
-            "name": "serviceValue",
-            "description": "",
-            "remoteName": "contracts.$.value",
-            "types": [
-              "metric"
-            ],
-            "format": "",
-            "dataType": "float"
-          },
-          {
-            "index": 6,
-            "name": "sufixId",
-            "description": "",
-            "remoteName": "contracts.$.sufixId",
-            "types": [
-              "id"
-            ],
-            "format": "",
-            "dataType": "int"
-          }
-        ]
-      },
-      {
         "name": "test-value-variables",
         "tpName": "test",
         "description": "Test the split event based on array items",
@@ -792,256 +633,6 @@
         ]
       },
       {
-        "name": "test-split-neasted-array-with-variables",
-        "tpName": "test",
-        "description": "Test the split event based on neasted array items",
-        "sortIndex": 9,
-        "fieldMapping": [
-          {
-            "index": 0,
-            "name": "id",
-            "description": "",
-            "remoteName": "_id",
-            "types": [
-              "id"
-            ],
-            "format": "",
-            "dataType": "string"
-          },
-          {
-            "index": 1,
-            "name": "date",
-            "description": "",
-            "remoteName": "metadata.created",
-            "types": [
-              "date"
-            ],
-            "format": "2006-01-02T15:04:05.999",
-            "dataType": "date"
-          },
-          {
-            "index": 2,
-            "name": "client",
-            "description": "",
-            "remoteName": "client.name",
-            "types": [
-              "customer"
-            ],
-            "format": "",
-            "dataType": "string"
-          },
-          {
-            "index": 3,
-            "name": "service",
-            "description": "",
-            "remoteName": "contracts.$.data.products.$.sku",
-            "types": [
-              "service"
-            ],
-            "format": "",
-            "dataType": "string"
-          },
-          {
-            "index": 4,
-            "name": "accountCode",
-            "description": "",
-            "remoteName": "accountCode",
-            "types": [
-              "modifier",
-              "value"
-            ],
-            "format": "",
-            "dataType": "string"
-          },
-          {
-            "index": 5,
-            "name": "serviceValue",
-            "description": "",
-            "remoteName": "contracts.$.value",
-            "types": [
-              "metric",
-              "value"
-            ],
-            "format": "",
-            "dataType": "float"
-          },
-          {
-            "index": 6,
-            "name": "intValue",
-            "description": "",
-            "remoteName": "contracts.$.intValue",
-            "types": [
-              "value",
-              "info"
-            ],
-            "format": "",
-            "dataType": "int"
-          },
-          {
-            "index": 7,
-            "name": "registration",
-            "description": "",
-            "remoteName": "contracts.$.registration",
-            "types": [
-              "id"
-            ],
-            "format": "",
-            "dataType": "bool"
-          }
-        ]
-      },
-      {
-        "name": "test-split-neasted-array-with-neasted-id",
-        "tpName": "test",
-        "description": "Test the split event based on neasted array with neasted ids",
-        "sortIndex": 9,
-        "fieldMapping": [
-          {
-            "index": 0,
-            "name": "neastedId",
-            "description": "",
-            "remoteName": "contracts.$.data.products.$.sku",
-            "types": [
-              "id"
-            ],
-            "format": "",
-            "dataType": "string"
-          },
-          {
-            "index": 1,
-            "name": "date",
-            "description": "",
-            "remoteName": "metadata.created",
-            "types": [
-              "date"
-            ],
-            "format": "2006-01-02T15:04:05.999",
-            "dataType": "date"
-          },
-          {
-            "index": 2,
-            "name": "client",
-            "description": "",
-            "remoteName": "client.name",
-            "types": [
-              "customer"
-            ],
-            "format": "",
-            "dataType": "string"
-          },
-          {
-            "index": 3,
-            "name": "id",
-            "description": "",
-            "remoteName": "_id",
-            "types": [
-              "id"
-            ],
-            "format": "",
-            "dataType": "string"
-          },
-          {
-            "index": 4,
-            "name": "accountCode",
-            "description": "",
-            "remoteName": "accountCode",
-            "types": [
-              "modifier",
-              "value"
-            ],
-            "format": "",
-            "dataType": "string"
-          },
-          {
-            "index": 5,
-            "name": "service",
-            "description": "",
-            "remoteName": "contracts.$.data.products.$.service",
-            "types": [
-              "service"
-            ],
-            "format": "",
-            "dataType": "string"
-          },
-          {
-            "index": 6,
-            "name": "serviceValue",
-            "description": "",
-            "remoteName": "contracts.$.value",
-            "types": [
-              "value"
-            ],
-            "format": "",
-            "dataType": "float"
-          }
-        ]
-      },
-      {
-        "name": "test-id-on-root",
-        "tpName": "test",
-        "description": "Test array items with no ids",
-        "sortIndex": 9,
-        "fieldMapping": [
-          {
-            "index": 0,
-            "name": "id",
-            "description": "",
-            "remoteName": "_id",
-            "types": [
-              "id"
-            ],
-            "format": "",
-            "dataType": "float"
-          },
-          {
-            "index": 1,
-            "name": "date",
-            "description": "",
-            "remoteName": "metadata.created",
-            "types": [
-              "date"
-            ],
-            "format": "2006-01-02T15:04:05.999",
-            "dataType": "date"
-          },
-          {
-            "index": 2,
-            "name": "client",
-            "description": "",
-            "remoteName": "client.name",
-            "types": [
-              "id",
-              "customer"
-            ],
-            "format": "",
-            "dataType": "string"
-          },
-          {
-            "index": 3,
-            "name": "service",
-            "description": "",
-            "remoteName": "contracts.$.data.product",
-            "types": [
-              "service"
-            ],
-            "format": "",
-            "dataType": "string"
-          },
-          {
-            "index": 4,
-            "name": "accountCode",
-            "description": "",
-            "remoteName": "accountCode",
-            "types": [
-              "modifier",
-              "value"
-            ],
-            "format": "",
-            "dataType": "string"
-          }
-        ]
-      },
-      {
         "name": "filter-test",
         "description": "Transações Concluídas ACME",
         "sortIndex": 100,
@@ -1055,7 +646,7 @@
               "id"
             ],
             "format": "",
-            "dataType" : "string"
+            "dataType": "string"
           },
           {
             "index": 1,
@@ -1076,7 +667,7 @@
               "customer"
             ],
             "format": "",
-            "dataType" : "string"
+            "dataType": "string"
           },
           {
             "index": 3,
@@ -1087,12 +678,12 @@
               "info"
             ],
             "format": "",
-            "dataType" : "string",
+            "dataType": "string",
             "filter": {
-              "criteria" : "not-equals",
-              "startDate" : "2024-09-04T18:24:40.915Z",
-              "endDate" : "2124-09-04T18:24:40.915Z",
-              "values" : [
+              "criteria": "not-equals",
+              "startDate": "2024-09-04T18:24:40.915Z",
+              "endDate": "2124-09-04T18:24:40.915Z",
+              "values": [
                 "42.660.634/0001-10",
                 "22.003.653/0001-67"
               ]
@@ -1107,7 +698,7 @@
               "customer"
             ],
             "format": "",
-            "dataType" : "string"
+            "dataType": "string"
           },
           {
             "index": 5,
@@ -1118,12 +709,12 @@
               "service"
             ],
             "format": "",
-            "dataType" : "string",
+            "dataType": "string",
             "filter": {
-              "criteria" : "equals",
-              "startDate" : "2024-09-04T18:24:40.915Z",
-              "endDate" : "2124-09-04T18:24:40.915Z",
-              "values" : [
+              "criteria": "equals",
+              "startDate": "2024-09-04T18:24:40.915Z",
+              "endDate": "2124-09-04T18:24:40.915Z",
+              "values": [
                 "offer-transaction"
               ]
             }
@@ -1138,12 +729,12 @@
               "billingScope"
             ],
             "format": "",
-            "dataType" : "string",
+            "dataType": "string",
             "filter": {
-              "criteria" : "not-equals",
-              "startDate" : "2020-09-04T18:24:40.915Z",
-              "endDate" : "2022-09-04T18:24:40.915Z",
-              "values" : [
+              "criteria": "not-equals",
+              "startDate": "2020-09-04T18:24:40.915Z",
+              "endDate": "2022-09-04T18:24:40.915Z",
+              "values": [
                 "offer-sunda"
               ]
             }
@@ -1157,7 +748,7 @@
               "modifier"
             ],
             "format": "",
-            "dataType" : "string"
+            "dataType": "string"
           },
           {
             "index": 8,
@@ -1169,7 +760,7 @@
               "metric"
             ],
             "format": "",
-            "dataType" : "float"
+            "dataType": "float"
           },
           {
             "index": 9,
@@ -1180,7 +771,7 @@
               "info"
             ],
             "format": "",
-            "dataType" : "string"
+            "dataType": "string"
           },
           {
             "index": 10,
@@ -1191,7 +782,7 @@
               "value"
             ],
             "format": "",
-            "dataType" : "bool"
+            "dataType": "bool"
           },
           {
             "index": 11,
@@ -1202,7 +793,186 @@
               "value"
             ],
             "format": "",
-            "dataType" : "int"
+            "dataType": "int"
+          }
+        ]
+      },
+      {
+        "name": "test-fields-calc-with-expression-map-based",
+        "tpName": "test",
+        "description": "Test the calc field",
+        "sortIndex": 9,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "id",
+            "description": "",
+            "remoteName": "_id",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "metadata.created",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999",
+            "dataType": "date"
+          },
+          {
+            "index": 2,
+            "name": "client",
+            "description": "",
+            "remoteName": "client.name",
+            "types": [
+              "customer"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 3,
+            "name": "service",
+            "description": "",
+            "remoteName": "contract.data.product",
+            "types": [
+              "service"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 4,
+            "name": "accountCode",
+            "description": "",
+            "remoteName": "accountCode",
+            "types": [
+              "modifier",
+              "value"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 5,
+            "name": "serviceValue",
+            "description": "",
+            "remoteName": "contract.value",
+            "types": [
+              "metric",
+              "value"
+            ],
+            "format": "",
+            "dataType": "float"
+          },
+          {
+            "index": 6,
+            "name": "multiplier",
+            "description": "",
+            "expression": "event.contract.cost + 10 > 110 ? 2.0 : 0.5",
+            "types": [
+              "value"
+            ],
+            "format": "",
+            "dataType": "int"
+          }
+        ]
+      }
+
+
+
+
+      ,
+      {
+        "name": "test-fields-calc-with-expression-line-based",
+        "tpName": "test",
+        "description": "Test the calc field",
+        "sortIndex": 9,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "id",
+            "description": "",
+            "remoteName": "_id",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "created",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999",
+            "dataType": "date"
+          },
+          {
+            "index": 2,
+            "name": "client",
+            "description": "",
+            "remoteName": "clientName",
+            "types": [
+              "customer"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 3,
+            "name": "service",
+            "description": "",
+            "remoteName": "product",
+            "types": [
+              "service"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 4,
+            "name": "accountCode",
+            "description": "",
+            "remoteName": "accountCode",
+            "types": [
+              "modifier",
+              "value"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 5,
+            "name": "serviceValue",
+            "description": "",
+            "remoteName": "value",
+            "types": [
+              "metric",
+              "value"
+            ],
+            "format": "",
+            "dataType": "float"
+          },
+          {
+            "index": 6,
+            "name": "multiplier",
+            "description": "",
+            "expression": "parseFloat(event.value) > 160 ? 2.0 : 0.5",
+            "types": [
+              "value"
+            ],
+            "format": "",
+            "dataType": "float"
           }
         ]
       }

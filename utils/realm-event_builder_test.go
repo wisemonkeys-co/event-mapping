@@ -292,8 +292,8 @@ func TestBuildRealmEventCalcFieldEventBasedOnMap(t *testing.T) {
 	testutils.AssertEquals(t, realmEvent.Variables["accountCode"], "abdf17")
 	testutils.AssertEquals(t, realmEvent.Variables["multiplier"], int64(2))
 	testutils.AssertEquals(t, realmEvent.Variables["serviceValue"], 159.97)
-	testutils.AssertEquals(t, realmEvent.Value[1]["multiplier"], float64(2))
-	testutils.AssertEquals(t, realmEvent.Raw, "123987465;2026-05-02T19:00:00.000;ACME LTDA;service-foo;abdf17;159.970000")
+	testutils.AssertEquals(t, realmEvent.Value[2]["multiplier"], float64(2))
+	testutils.AssertEquals(t, realmEvent.Raw, "123987465;2026-05-02T19:00:00.000;ACME LTDA;service-foo;abdf17;159.970000;100.050000")
 	fmt.Println(realmEvent.Raw)
 }
 

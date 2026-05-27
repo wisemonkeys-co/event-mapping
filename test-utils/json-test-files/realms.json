@@ -873,9 +873,20 @@
           },
           {
             "index": 6,
+            "name": "amount",
+            "description": "",
+            "remoteName": "contract.cost",
+            "types": [
+              "value"
+            ],
+            "format": "",
+            "dataType": "float"
+          },
+          {
+            "index": 7,
             "name": "multiplier",
             "description": "",
-            "expression": "event.contract.cost + 10 > 110 ? 2.0 : 0.5",
+            "expression": "event.amount + 10 > 110 ? 2.0 : 0.5",
             "types": [
               "value"
             ],
@@ -883,12 +894,7 @@
             "dataType": "int"
           }
         ]
-      }
-
-
-
-
-      ,
+      },
       {
         "name": "test-fields-calc-with-expression-line-based",
         "tpName": "test",
@@ -967,7 +973,7 @@
             "index": 6,
             "name": "multiplier",
             "description": "",
-            "expression": "parseFloat(event.value) > 160 ? 2.0 : 0.5",
+            "expression": "parseFloat(event.serviceValue) > 160 ? 2.0 : 0.5",
             "types": [
               "value"
             ],

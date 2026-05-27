@@ -23,7 +23,7 @@ func BuildRealmEventFromMap(event map[string]any, eventConfig types.Event, recor
 	}()
 	realmEvent.Realm = recordMap.Realm
 	realmEvent.RealmEvent = recordMap.Event
-	realmEvent.RealmID = extractString(event, recordMap.Id, "|")
+	realmEvent.RealmID = extractStringFromMap(event, recordMap.Id, "|")
 	realmEvent.RealmDate, err = GetRealmEventDate(event, recordMap)
 	if err != nil {
 		return
@@ -37,18 +37,19 @@ func BuildRealmEventFromMap(event map[string]any, eventConfig types.Event, recor
 	} else {
 		realmEvent.Count = 1
 	}
+	eventKVPair := mapEventMapToInternalObject(event, eventConfig)
 	realmEvent.Customer = extractStringListFromMap(event, recordMap.Customer)
 	realmEvent.TpCustomer = extractStringListFromMap(event, recordMap.TPCustomer)
-	realmEvent.Metric = extractStringFloatMapList(event, recordMap.Metrics)
+	realmEvent.Metric = extractStringFloatMapListFromMap(event, recordMap.Metrics, eventKVPair)
 	realmEvent.Metric = append(realmEvent.Metric, getFloatMap("count", realmEvent.Count))
-	realmEvent.Value = extractStringFloatMapList(event, recordMap.Values)
-	realmEvent.Variables = extractInterfaceMapFromMap(event, recordMap.Variables)
-	realmEvent.Modifier = extractStringMapListFromMap(event, recordMap.Modifiers)
+	realmEvent.Value = extractStringFloatMapListFromMap(event, recordMap.Values, eventKVPair)
+	realmEvent.Variables = extractInterfaceMapFromMap(event, recordMap.Variables, eventKVPair)
+	realmEvent.Modifier = extractStringMapListFromMap(event, recordMap.Modifiers, eventKVPair)
 	realmEvent.Service = extractStringListFromMap(event, recordMap.Service)
 	realmEvent.GroupBy = extractStringListFromMap(event, recordMap.GroupBy)
 	realmEvent.BillingScope = extractStringListFromMap(event, recordMap.BillingScope)
-	realmEvent.Info = extractStringMapListFromMap(event, recordMap.Info)
-	realmEvent.Raw = GetEventLineString(event, eventConfig)
+	realmEvent.Info = extractStringMapListFromMap(event, recordMap.Info, eventKVPair)
+	realmEvent.Raw = GetEventLineStringFromMap(event, eventConfig)
 	return
 }
 
@@ -65,20 +66,7 @@ func GetValueFromMap(fieldName string, object map[string]any) (value any, found 
 	return
 }
 
-func GetRealmEventDate(event map[string]any, recordMap types.RecordMap) (date time.Time, err error) {
-	realmDate, ok := GetValueFromMap(recordMap.Date.RemoteName, event)
-	if !ok {
-		err = fmt.Errorf("attribute %s not found", recordMap.Date.RemoteName)
-		return
-	}
-	date, err = time.ParseInLocation(recordMap.Date.Format, realmDate.(string), recordMap.Location)
-	if err != nil {
-		err = fmt.Errorf("invalid Date on field %s", recordMap.Date.RemoteName)
-	}
-	return
-}
-
-func GetEventLineString(event map[string]any, eventConfig types.Event) string {
+func GetEventLineStringFromMap(event map[string]any, eventConfig types.Event) string {
 	var values []string
 	for _, c := range eventConfig.FieldMapping {
 		if c.RemoteName != "" {
@@ -104,10 +92,19 @@ func ShouldDropEventMapBased(event map[string]any, recordMap types.RecordMap) bo
 	return false
 }
 
-func getFloatMap(name string, value int32) (floatMap map[string]float64) {
-	floatMap = make(map[string]float64)
-	floatMap[name] = float64(value)
-	return
+func mapEventMapToInternalObject(event map[string]any, eventConfig types.Event) map[string]interface{} {
+	eventKVPair := make(map[string]interface{})
+	for _, f := range eventConfig.FieldMapping {
+		if f.RemoteName != "" {
+			data, ok := GetValueFromMap(f.RemoteName, event)
+			if ok {
+				eventKVPair[f.Name] = data
+			} else {
+				eventKVPair[f.Name] = nil
+			}
+		}
+	}
+	return eventKVPair
 }
 
 func extractStringListFromMap(event map[string]any, mappedFields []types.RecordField) (strList []string) {
@@ -121,7 +118,7 @@ func extractStringListFromMap(event map[string]any, mappedFields []types.RecordF
 	return
 }
 
-func extractString(event map[string]any, mappedFields []types.RecordField, sep string) (str string) {
+func extractStringFromMap(event map[string]any, mappedFields []types.RecordField, sep string) (str string) {
 	strList := make([]string, 0)
 	for _, mappedField := range mappedFields {
 		value, ok := GetValueFromMap(mappedField.RemoteName, event)
@@ -133,14 +130,14 @@ func extractString(event map[string]any, mappedFields []types.RecordField, sep s
 	return strings.Join(strList, sep)
 }
 
-func extractStringMapListFromMap(event map[string]any, mappedFields []types.RecordField) (strMapList []map[string]string) {
+func extractStringMapListFromMap(event map[string]any, mappedFields []types.RecordField, eventKVPair map[string]interface{}) (strMapList []map[string]string) {
 	strMapList = make([]map[string]string, 0)
 	for _, mappedField := range mappedFields {
 		var value any
 		var ok bool
 		if mappedField.Expression != "" {
 			vars := make(map[string]any)
-			vars["event"] = event
+			vars["event"] = eventKVPair
 			result, errEval := eval.Evaluate(mappedField.Expression, vars, MapFunctions())
 			ok = errEval == nil
 			value = result
@@ -156,14 +153,14 @@ func extractStringMapListFromMap(event map[string]any, mappedFields []types.Reco
 	return
 }
 
-func extractStringFloatMapList(event map[string]any, mappedFields []types.RecordField) (strFloatMapList []map[string]float64) {
+func extractStringFloatMapListFromMap(event map[string]any, mappedFields []types.RecordField, eventKVPair map[string]interface{}) (strFloatMapList []map[string]float64) {
 	strFloatMapList = make([]map[string]float64, 0)
 	for _, mappedField := range mappedFields {
 		var value any
 		var ok bool
 		if mappedField.Expression != "" {
 			vars := make(map[string]any)
-			vars["event"] = event
+			vars["event"] = eventKVPair
 			result, errEval := eval.Evaluate(mappedField.Expression, vars, MapFunctions())
 			ok = errEval == nil
 			value = result
@@ -181,32 +178,14 @@ func extractStringFloatMapList(event map[string]any, mappedFields []types.Record
 	return
 }
 
-func GetString(unk any) string {
-	if unk == nil {
-		return ""
-	}
-	switch i := unk.(type) {
-	case float64:
-		f := unk.(float64)
-		if f == math.Trunc(f) {
-			return strconv.Itoa(int(f))
-		}
-		return fmt.Sprintf("%f", i)
-	case int:
-		return strconv.Itoa(i)
-	default:
-		return fmt.Sprintf("%v", unk)
-	}
-}
-
-func extractInterfaceMapFromMap(event map[string]any, fieldMap []types.RecordField) map[string]any {
+func extractInterfaceMapFromMap(event map[string]any, fieldMap []types.RecordField, eventKVPair map[string]interface{}) map[string]any {
 	m := make(map[string]any)
 	for _, f := range fieldMap {
 		var value any
 		var ok bool
 		if f.Expression != "" {
 			vars := make(map[string]any)
-			vars["event"] = event
+			vars["event"] = eventKVPair
 			result, errEval := eval.Evaluate(f.Expression, vars, MapFunctions())
 			ok = errEval == nil
 			value = result
@@ -254,7 +233,6 @@ func extractInterfaceMapFromMap(event map[string]any, fieldMap []types.RecordFie
 }
 
 // from line
-
 func BuildRealmEventFromLineRecord(lineRecord []string, eventConfig types.Event, recordMap types.RecordMap) (realmEvent types.RealmEvent, err error) {
 	defer func() {
 		if r := recover(); r != nil {
@@ -281,12 +259,7 @@ func BuildRealmEventFromLineRecord(lineRecord []string, eventConfig types.Event,
 	if recordMap.TpName != "" {
 		realmEvent.TpName = recordMap.TpName
 	}
-	eventKVPair := make(map[string]interface{})
-	for _, f := range eventConfig.FieldMapping {
-		if f.RemoteName != "" {
-			eventKVPair[f.RemoteName] = lineRecord[f.Index]
-		}
-	}
+	eventKVPair := mapLineRecordToInternalObject(lineRecord, eventConfig)
 	realmEvent.Customer = extractStringListFromLineRecord(lineRecord, recordMap.Customer)
 	realmEvent.TpCustomer = extractStringListFromLineRecord(lineRecord, recordMap.TPCustomer)
 	realmEvent.Metric = extractStringFloatMapListFromLineRecord(lineRecord, recordMap.Metrics, eventKVPair)
@@ -311,6 +284,16 @@ func ShouldDropEventLineBased(lineRecord []string, recordMap types.RecordMap) bo
 		}
 	}
 	return false
+}
+
+func mapLineRecordToInternalObject(lineRecord []string, eventConfig types.Event) map[string]interface{} {
+	eventKVPair := make(map[string]interface{})
+	for _, f := range eventConfig.FieldMapping {
+		if f.RemoteName != "" {
+			eventKVPair[f.Name] = lineRecord[f.Index]
+		}
+	}
+	return eventKVPair
 }
 
 func extractInterfaceMapFromLineRecord(lineRecord []string, fieldMap []types.RecordField, eventKVPair map[string]interface{}) map[string]interface{} {
@@ -423,5 +406,44 @@ func extractStringFloatMapListFromLineRecord(lineRecord []string, mappedFields [
 		}
 		strFloatMapList = append(strFloatMapList, floatMap)
 	}
+	return
+}
+
+// Util
+func GetRealmEventDate(event map[string]any, recordMap types.RecordMap) (date time.Time, err error) {
+	realmDate, ok := GetValueFromMap(recordMap.Date.RemoteName, event)
+	if !ok {
+		err = fmt.Errorf("attribute %s not found", recordMap.Date.RemoteName)
+		return
+	}
+	date, err = time.ParseInLocation(recordMap.Date.Format, realmDate.(string), recordMap.Location)
+	if err != nil {
+		err = fmt.Errorf("invalid Date on field %s", recordMap.Date.RemoteName)
+	}
+	return
+}
+
+func GetString(unk any) string {
+	if unk == nil {
+		return ""
+	}
+	switch i := unk.(type) {
+	case float64:
+		f := unk.(float64)
+		if f == math.Trunc(f) {
+			return strconv.Itoa(int(f))
+		}
+		return fmt.Sprintf("%f", i)
+	case int:
+		return strconv.Itoa(i)
+	default:
+		return fmt.Sprintf("%v", unk)
+	}
+}
+
+// Common
+func getFloatMap(name string, value int32) (floatMap map[string]float64) {
+	floatMap = make(map[string]float64)
+	floatMap[name] = float64(value)
 	return
 }

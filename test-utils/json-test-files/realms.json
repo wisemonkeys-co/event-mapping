@@ -896,6 +896,115 @@
         ]
       },
       {
+        "name": "test-fields-calc-with-expression-map-based_missconfig",
+        "tpName": "test",
+        "description": "Test the calc field",
+        "sortIndex": 9,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "id",
+            "description": "",
+            "remoteName": "_id",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "metadata.created",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999",
+            "dataType": "date"
+          },
+          {
+            "index": 2,
+            "name": "client",
+            "description": "",
+            "remoteName": "client.name",
+            "types": [
+              "customer"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 3,
+            "name": "service",
+            "description": "",
+            "remoteName": "contract.data.product",
+            "types": [
+              "service"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 4,
+            "name": "accountCode",
+            "description": "",
+            "remoteName": "accountCode",
+            "types": [
+              "modifier",
+              "value"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 5,
+            "name": "serviceValue",
+            "description": "",
+            "remoteName": "contract.value",
+            "types": [
+              "metric",
+              "value"
+            ],
+            "format": "",
+            "dataType": "float"
+          },
+          {
+            "index": 6,
+            "name": "amount",
+            "description": "",
+            "remoteName": "contract.cost",
+            "types": [
+              "value"
+            ],
+            "format": "",
+            "dataType": "float"
+          },
+          {
+            "index": 7,
+            "name": "multiplier",
+            "description": "",
+            "expression": "event.amount + 10 > 110 ? 2.0 : 0.5",
+            "types": [
+              "value"
+            ],
+            "format": "",
+            "dataType": "int"
+          },
+          {
+            "index": 8,
+            "name": "applyMetricMissconfig",
+            "description": "",
+            "remoteName": "contract.flag",
+            "types": [
+              "info"
+            ],
+            "format": "",
+            "dataType": "bool"
+          }
+        ]
+      },
+      {
         "name": "test-fields-calc-with-expression-line-based",
         "tpName": "test",
         "description": "Test the calc field",
@@ -979,6 +1088,114 @@
             ],
             "format": "",
             "dataType": "float"
+          }
+        ]
+      },
+
+
+
+
+
+
+
+
+
+      {
+        "name": "test-fields-calc-with-expression-line-based_missconfig",
+        "tpName": "test",
+        "description": "Test the calc field",
+        "sortIndex": 9,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "id",
+            "description": "",
+            "remoteName": "_id",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "created",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999",
+            "dataType": "date"
+          },
+          {
+            "index": 2,
+            "name": "client",
+            "description": "",
+            "remoteName": "clientName",
+            "types": [
+              "customer"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 3,
+            "name": "service",
+            "description": "",
+            "remoteName": "product",
+            "types": [
+              "service"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 4,
+            "name": "accountCode",
+            "description": "",
+            "remoteName": "accountCode",
+            "types": [
+              "modifier",
+              "value"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 5,
+            "name": "serviceValue",
+            "description": "",
+            "remoteName": "value",
+            "types": [
+              "metric",
+              "value"
+            ],
+            "format": "",
+            "dataType": "float"
+          },
+          {
+            "index": 6,
+            "name": "multiplier",
+            "description": "",
+            "expression": "parseFloat(event.serviceValue) > 160 ? 2.0 : 0.5",
+            "types": [
+              "value"
+            ],
+            "format": "",
+            "dataType": "float"
+          }
+          ,
+          {
+            "index": 7,
+            "name": "tagged",
+            "description": "",
+            "remoteName": "flag",
+            "types": [
+              "info"
+            ],
+            "format": "",
+            "dataType": "bool"
           }
         ]
       }

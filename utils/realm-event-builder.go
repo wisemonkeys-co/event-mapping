@@ -441,6 +441,29 @@ func GetString(unk any) string {
 	}
 }
 
+func ValidateEventConfig(eventConfig types.Event) (bool, error) {
+	firstExpressionIndex := -1
+	for i, f := range eventConfig.FieldMapping {
+		if f.RemoteName != "" {
+			if firstExpressionIndex > -1 && i > firstExpressionIndex {
+				return false, fmt.Errorf(
+					"the expression item %d cannot have a index greater than the mapped field %d %s",
+					firstExpressionIndex, f.Index, f.Name,
+				)
+			}
+		} else {
+			if f.Expression != "" {
+				if firstExpressionIndex == -1 {
+					firstExpressionIndex = i
+				}
+			} else {
+				return false, fmt.Errorf("unknow field mapping for item %d %s", f.Index, f.Name)
+			}
+		}
+	}
+	return true, nil
+}
+
 // Common
 func getFloatMap(name string, value int32) (floatMap map[string]float64) {
 	floatMap = make(map[string]float64)

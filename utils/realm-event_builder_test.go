@@ -327,3 +327,59 @@ func TestBuildRealmEventCalcFieldEventBasedOnLineRecord(t *testing.T) {
 	testutils.AssertEquals(t, realmEvent.Variables["serviceValue"], 159.97)
 	testutils.AssertEquals(t, realmEvent.Value[2]["multiplier"], 0.5)
 }
+
+func TestValidateEventConfigBasedOnLineRecord_Missconfiguration(t *testing.T) {
+	eventName := "test-fields-calc-with-expression-line-based_missconfig"
+	realmName := "bonuz-br"
+	eventData, eventLocation, err := testutils.GetEventDataFromJsonFiles(eventName, realmName)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	dbMock := &testutils.DBMock{
+		LocationToReturn:         eventLocation,
+		EventMappingDataToReturn: eventData,
+	}
+	_, eventConfig, err := GetRecordMap(dbMock, realmName, eventName)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	valid, err := ValidateEventConfig(eventConfig)
+	if valid {
+		t.Errorf("shold return an invalid event config")
+		return
+	}
+	if err == nil {
+		t.Errorf("shold return the error related with the invalid event config")
+		return
+	}
+}
+
+func TestValidateEventConfigBasedOnMap_Missconfiguration(t *testing.T) {
+	eventName := "test-fields-calc-with-expression-map-based_missconfig"
+	realmName := "bonuz-br"
+	eventData, eventLocation, err := testutils.GetEventDataFromJsonFiles(eventName, realmName)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	dbMock := &testutils.DBMock{
+		LocationToReturn:         eventLocation,
+		EventMappingDataToReturn: eventData,
+	}
+	_, eventConfig, err := GetRecordMap(dbMock, realmName, eventName)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	valid, err := ValidateEventConfig(eventConfig)
+	if valid {
+		t.Errorf("shold return an invalid event config")
+		return
+	}
+	if err == nil {
+		t.Errorf("shold return the error related with the invalid event config")
+		return
+	}
+}

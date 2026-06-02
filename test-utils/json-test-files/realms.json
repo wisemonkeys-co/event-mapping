@@ -1091,15 +1091,6 @@
           }
         ]
       },
-
-
-
-
-
-
-
-
-
       {
         "name": "test-fields-calc-with-expression-line-based_missconfig",
         "tpName": "test",
@@ -1193,6 +1184,105 @@
             "remoteName": "flag",
             "types": [
               "info"
+            ],
+            "format": "",
+            "dataType": "bool"
+          }
+        ]
+      },
+      {
+        "name": "test-split-neasted-array-with-variables",
+        "tpName": "test",
+        "description": "Test the split event based on neasted array items",
+        "sortIndex": 9,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "id",
+            "description": "",
+            "remoteName": "_id",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "metadata.created",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999",
+            "dataType": "date"
+          },
+          {
+            "index": 2,
+            "name": "client",
+            "description": "",
+            "remoteName": "client.name",
+            "types": [
+              "customer"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 3,
+            "name": "service",
+            "description": "",
+            "remoteName": "contracts.$.data.products.$.sku",
+            "types": [
+              "service"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 4,
+            "name": "accountCode",
+            "description": "",
+            "remoteName": "accountCode",
+            "types": [
+              "modifier",
+              "value"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 5,
+            "name": "serviceValue",
+            "description": "",
+            "remoteName": "contracts.$.value",
+            "types": [
+              "metric",
+              "value"
+            ],
+            "format": "",
+            "dataType": "float"
+          },
+          {
+            "index": 6,
+            "name": "intValue",
+            "description": "",
+            "remoteName": "contracts.$.intValue",
+            "types": [
+              "value",
+              "info"
+            ],
+            "format": "",
+            "dataType": "int"
+          },
+          {
+            "index": 7,
+            "name": "registration",
+            "description": "",
+            "remoteName": "contracts.$.registration",
+            "types": [
+              "id"
             ],
             "format": "",
             "dataType": "bool"

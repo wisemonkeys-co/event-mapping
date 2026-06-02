@@ -1,0 +1,1211 @@
+[
+  {
+    "id": "6514700c3e3c3872a09e9d71",
+    "name": "minu-shop-br",
+    "description": "Minu Shop",
+    "location": "America/Sao_Paulo",
+    "sortGroup": "100",
+    "type": "external",
+    "events": [
+      {
+        "name": "event-streaming-minu-offer-order-transaction",
+        "description": "Transações Concluídas MinuShop",
+        "sortIndex": 100,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "id",
+            "description": "",
+            "remoteName": "order.id",
+            "types": [
+              "id"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "date",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05Z07:00"
+          },
+          {
+            "index": 2,
+            "name": "companyId",
+            "description": "",
+            "remoteName": "company.id",
+            "types": [
+              "customer"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 3,
+            "name": "companyCNPJ",
+            "description": "",
+            "remoteName": "company.cnpj",
+            "types": [
+              "info"
+            ],
+            "format": "string",
+            "filter": {
+              "criteria": "not-equals",
+              "startDate": "2025-04-25T00:59:47.271Z",
+              "endDate": "2125-05-25T00:59:47.271Z",
+              "values": [
+                "48.811.335/0001-16"
+              ]
+            }
+          },
+          {
+            "index": 4,
+            "name": "accountId",
+            "description": "",
+            "remoteName": "accountId",
+            "types": [
+              "customer"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 5,
+            "name": "serviceId",
+            "description": "",
+            "remoteName": "serviceId",
+            "types": [
+              "service"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 6,
+            "name": "program",
+            "description": "",
+            "remoteName": "program",
+            "types": [
+              "groupby",
+              "billingScope"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 7,
+            "name": "paymentMethod",
+            "description": "",
+            "remoteName": "order.paymentMethod",
+            "types": [
+              "modifier"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 8,
+            "name": "orderAmount",
+            "description": "",
+            "remoteName": "order.value",
+            "types": [
+              "value",
+              "metric"
+            ],
+            "format": "string"
+          }
+        ]
+      }
+    ],
+    "color": "#ff9009"
+  },
+  {
+    "id": "56eee0194e08881936d54251",
+    "name": "bonuz-br",
+    "description": "Bonuz",
+    "location": "America/Sao_Paulo",
+    "sortGroup": "10",
+    "type": "external",
+    "color": "#7ED321",
+    "events": [
+      {
+        "name": "daily-burns",
+        "description": "Queima diária",
+        "sortIndex": 60,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "id",
+            "description": "",
+            "remoteName": "profileId",
+            "types": [
+              "id"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "issuedDate",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999"
+          },
+          {
+            "index": 2,
+            "name": "company",
+            "description": "",
+            "remoteName": "company",
+            "types": [
+              "customer"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 3,
+            "name": "experience",
+            "description": "",
+            "remoteName": "experience",
+            "types": [
+              "customer",
+              "modifier",
+              "groupby",
+              "billingScope"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 4,
+            "name": "prize",
+            "description": "Prêmio",
+            "remoteName": "prize",
+            "types": [
+              "service"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 5,
+            "name": "Amount",
+            "description": "",
+            "remoteName": "Amount",
+            "types": [
+              "metric",
+              "count"
+            ],
+            "format": "string"
+          }
+        ]
+      },
+      {
+        "name": "active-coupons",
+        "description": "Cupons ativados",
+        "sortIndex": 50,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "id",
+            "description": "",
+            "remoteName": "_id",
+            "types": [
+              "id"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "timestamp",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999"
+          },
+          {
+            "index": 2,
+            "name": "accountCode",
+            "description": "",
+            "remoteName": "accountCode",
+            "types": [
+              "customer"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 3,
+            "name": "experience",
+            "description": "",
+            "remoteName": "experience",
+            "types": [
+              "customer",
+              "modifier",
+              "groupby",
+              "billingScope"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 4,
+            "name": "alliance",
+            "description": "",
+            "remoteName": "alliance",
+            "types": [
+              "modifier"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 5,
+            "name": "prize",
+            "description": "",
+            "remoteName": "prize",
+            "types": [
+              "service",
+              "modifier",
+              "billingScope"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 6,
+            "name": "regionCode",
+            "description": "",
+            "remoteName": "regionCode",
+            "types": [
+              "info"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 7,
+            "name": "portedFrom",
+            "description": "",
+            "remoteName": "portedFrom",
+            "types": [
+              "info"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 8,
+            "name": "couponValue",
+            "description": "",
+            "remoteName": "value",
+            "types": [
+              "metric"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 9,
+            "name": "couponAmount",
+            "description": "",
+            "remoteName": "couponAmount",
+            "types": [
+              "metric",
+              "count"
+            ],
+            "format": "string"
+          }
+        ]
+      },
+      {
+        "name": "expired-coupons",
+        "description": "Cupons expirados",
+        "sortIndex": 50,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "id",
+            "description": "",
+            "remoteName": "_id",
+            "types": [
+              "id"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "timestamp",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999"
+          },
+          {
+            "index": 2,
+            "name": "alliance",
+            "description": "",
+            "remoteName": "alliance",
+            "types": [
+              "info"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 3,
+            "name": "accountCode",
+            "description": "",
+            "remoteName": "accountCode",
+            "types": [
+              "customer"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 4,
+            "name": "experience",
+            "description": "",
+            "remoteName": "experience",
+            "types": [
+              "customer",
+              "modifier",
+              "groupby",
+              "billingScope"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 5,
+            "name": "prize",
+            "description": "",
+            "remoteName": "prize",
+            "types": [
+              "service"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 6,
+            "name": "regionCode",
+            "description": "",
+            "remoteName": "regionCode",
+            "types": [
+              "info"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 7,
+            "name": "couponValue",
+            "description": "",
+            "remoteName": "value",
+            "types": [
+              "metric"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 8,
+            "name": "couponQuantity",
+            "description": "",
+            "remoteName": "quantity",
+            "types": [
+              "metric"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 9,
+            "name": "couponAmount",
+            "description": "",
+            "remoteName": "couponAmount",
+            "types": [
+              "metric",
+              "count"
+            ],
+            "format": "string"
+          }
+        ]
+      },
+      {
+        "name": "alliance-active-coupons",
+        "tpName": "active-coupons",
+        "description": "Cupons comissionados ativos",
+        "sortIndex": 50,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "id",
+            "description": "",
+            "remoteName": "_id",
+            "types": [
+              "id"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "timestamp",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999"
+          },
+          {
+            "index": 2,
+            "name": "alliance",
+            "description": "",
+            "remoteName": "alliance",
+            "types": [
+              "customer"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 3,
+            "name": "prize",
+            "description": "",
+            "remoteName": "prize",
+            "types": [
+              "service"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 4,
+            "name": "accountCode",
+            "description": "",
+            "remoteName": "accountCode",
+            "types": [
+              "TPCustomer",
+              "modifier"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 5,
+            "name": "experience",
+            "description": "",
+            "remoteName": "experience",
+            "types": [
+              "TPCustomer",
+              "modifier",
+              "groupby"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 6,
+            "name": "regionCode",
+            "description": "",
+            "remoteName": "regionCode",
+            "types": [
+              "info",
+              "customer"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 7,
+            "name": "portedFrom",
+            "description": "",
+            "remoteName": "portedFrom",
+            "types": [
+              "customer"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 8,
+            "name": "couponValue",
+            "description": "",
+            "remoteName": "value",
+            "types": [
+              "metric"
+            ],
+            "format": "string"
+          },
+          {
+            "index": 9,
+            "name": "couponAmount",
+            "description": "",
+            "remoteName": "couponAmount",
+            "types": [
+              "metric",
+              "count"
+            ],
+            "format": "string"
+          }
+        ]
+      },
+      {
+        "name": "test-split-array",
+        "tpName": "test",
+        "description": "Test the split event based on array items",
+        "sortIndex": 2,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "id",
+            "description": "",
+            "remoteName": "_id",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "metadata.created",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999",
+            "dataType": "date"
+          },
+          {
+            "index": 2,
+            "name": "client",
+            "description": "",
+            "remoteName": "client.name",
+            "types": [
+              "customer"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 3,
+            "name": "service",
+            "description": "",
+            "remoteName": "contracts.$.data.product",
+            "types": [
+              "service"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 4,
+            "name": "accountCode",
+            "description": "",
+            "remoteName": "accountCode",
+            "types": [
+              "modifier"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 5,
+            "name": "serviceValue",
+            "description": "",
+            "remoteName": "contracts.$.value",
+            "types": [
+              "metric"
+            ],
+            "format": "",
+            "dataType": "float"
+          }
+        ]
+      },
+      {
+        "name": "test-split-array-multi-index",
+        "tpName": "test",
+        "description": "Test the split event based on array items",
+        "sortIndex": 2,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "id",
+            "description": "",
+            "remoteName": "_id",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "metadata.created",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999",
+            "dataType": "date"
+          },
+          {
+            "index": 2,
+            "name": "client",
+            "description": "",
+            "remoteName": "client.name",
+            "types": [
+              "customer"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 3,
+            "name": "service",
+            "description": "",
+            "remoteName": "contracts.$.data.product",
+            "types": [
+              "service"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 4,
+            "name": "accountCode",
+            "description": "",
+            "remoteName": "accountCode",
+            "types": [
+              "modifier"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 5,
+            "name": "serviceValue",
+            "description": "",
+            "remoteName": "contracts.$.value",
+            "types": [
+              "metric"
+            ],
+            "format": "",
+            "dataType": "float"
+          },
+          {
+            "index": 6,
+            "name": "sufixId",
+            "description": "",
+            "remoteName": "contracts.$.sufixId",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "int"
+          }
+        ]
+      },
+      {
+        "name": "test-value-variables",
+        "tpName": "test",
+        "description": "Test the split event based on array items",
+        "sortIndex": 9,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "id",
+            "description": "",
+            "remoteName": "_id",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "metadata.created",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999",
+            "dataType": "date"
+          },
+          {
+            "index": 2,
+            "name": "client",
+            "description": "",
+            "remoteName": "client.name",
+            "types": [
+              "customer"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 3,
+            "name": "service",
+            "description": "",
+            "remoteName": "contracts.$.data.product",
+            "types": [
+              "service"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 4,
+            "name": "accountCode",
+            "description": "",
+            "remoteName": "accountCode",
+            "types": [
+              "modifier",
+              "value"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 5,
+            "name": "serviceValue",
+            "description": "",
+            "remoteName": "contracts.$.value",
+            "types": [
+              "metric",
+              "value"
+            ],
+            "format": "",
+            "dataType": "float"
+          },
+          {
+            "index": 6,
+            "name": "intValue",
+            "description": "",
+            "remoteName": "contracts.$.intValue",
+            "types": [
+              "value"
+            ],
+            "format": "",
+            "dataType": "int"
+          },
+          {
+            "index": 7,
+            "name": "valueFlag",
+            "description": "",
+            "remoteName": "contracts.$.flag",
+            "types": [
+              "value"
+            ],
+            "format": "",
+            "dataType": "bool"
+          }
+        ]
+      },
+      {
+        "name": "test-split-neasted-array-with-variables",
+        "tpName": "test",
+        "description": "Test the split event based on neasted array items",
+        "sortIndex": 9,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "id",
+            "description": "",
+            "remoteName": "_id",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "metadata.created",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999",
+            "dataType": "date"
+          },
+          {
+            "index": 2,
+            "name": "client",
+            "description": "",
+            "remoteName": "client.name",
+            "types": [
+              "customer"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 3,
+            "name": "service",
+            "description": "",
+            "remoteName": "contracts.$.data.products.$.sku",
+            "types": [
+              "service"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 4,
+            "name": "accountCode",
+            "description": "",
+            "remoteName": "accountCode",
+            "types": [
+              "modifier",
+              "value"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 5,
+            "name": "serviceValue",
+            "description": "",
+            "remoteName": "contracts.$.value",
+            "types": [
+              "metric",
+              "value"
+            ],
+            "format": "",
+            "dataType": "float"
+          },
+          {
+            "index": 6,
+            "name": "intValue",
+            "description": "",
+            "remoteName": "contracts.$.intValue",
+            "types": [
+              "value",
+              "info"
+            ],
+            "format": "",
+            "dataType": "int"
+          },
+          {
+            "index": 7,
+            "name": "registration",
+            "description": "",
+            "remoteName": "contracts.$.registration",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "bool"
+          }
+        ]
+      },
+      {
+        "name": "test-split-neasted-array-with-neasted-id",
+        "tpName": "test",
+        "description": "Test the split event based on neasted array with neasted ids",
+        "sortIndex": 9,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "neastedId",
+            "description": "",
+            "remoteName": "contracts.$.data.products.$.sku",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "metadata.created",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999",
+            "dataType": "date"
+          },
+          {
+            "index": 2,
+            "name": "client",
+            "description": "",
+            "remoteName": "client.name",
+            "types": [
+              "customer"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 3,
+            "name": "id",
+            "description": "",
+            "remoteName": "_id",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 4,
+            "name": "accountCode",
+            "description": "",
+            "remoteName": "accountCode",
+            "types": [
+              "modifier",
+              "value"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 5,
+            "name": "service",
+            "description": "",
+            "remoteName": "contracts.$.data.products.$.service",
+            "types": [
+              "service"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 6,
+            "name": "serviceValue",
+            "description": "",
+            "remoteName": "contracts.$.value",
+            "types": [
+              "value"
+            ],
+            "format": "",
+            "dataType": "float"
+          }
+        ]
+      },
+      {
+        "name": "test-id-on-root",
+        "tpName": "test",
+        "description": "Test array items with no ids",
+        "sortIndex": 9,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "id",
+            "description": "",
+            "remoteName": "_id",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "float"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "metadata.created",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999",
+            "dataType": "date"
+          },
+          {
+            "index": 2,
+            "name": "client",
+            "description": "",
+            "remoteName": "client.name",
+            "types": [
+              "id",
+              "customer"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 3,
+            "name": "service",
+            "description": "",
+            "remoteName": "contracts.$.data.product",
+            "types": [
+              "service"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 4,
+            "name": "accountCode",
+            "description": "",
+            "remoteName": "accountCode",
+            "types": [
+              "modifier",
+              "value"
+            ],
+            "format": "",
+            "dataType": "string"
+          }
+        ]
+      },
+      {
+        "name": "filter-test",
+        "description": "Transações Concluídas ACME",
+        "sortIndex": 100,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "id",
+            "description": "",
+            "remoteName": "orderId",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType" : "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "date",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.000"
+          },
+          {
+            "index": 2,
+            "name": "companyId",
+            "description": "",
+            "remoteName": "companyId",
+            "types": [
+              "customer"
+            ],
+            "format": "",
+            "dataType" : "string"
+          },
+          {
+            "index": 3,
+            "name": "companyCNPJ",
+            "description": "",
+            "remoteName": "companyCnpj",
+            "types": [
+              "info"
+            ],
+            "format": "",
+            "dataType" : "string",
+            "filter": {
+              "criteria" : "not-equals",
+              "startDate" : "2024-09-04T18:24:40.915Z",
+              "endDate" : "2124-09-04T18:24:40.915Z",
+              "values" : [
+                "42.660.634/0001-10",
+                "22.003.653/0001-67"
+              ]
+            }
+          },
+          {
+            "index": 4,
+            "name": "accountId",
+            "description": "",
+            "remoteName": "accountId",
+            "types": [
+              "customer"
+            ],
+            "format": "",
+            "dataType" : "string"
+          },
+          {
+            "index": 5,
+            "name": "serviceId",
+            "description": "",
+            "remoteName": "serviceId",
+            "types": [
+              "service"
+            ],
+            "format": "",
+            "dataType" : "string",
+            "filter": {
+              "criteria" : "equals",
+              "startDate" : "2024-09-04T18:24:40.915Z",
+              "endDate" : "2124-09-04T18:24:40.915Z",
+              "values" : [
+                "offer-transaction"
+              ]
+            }
+          },
+          {
+            "index": 6,
+            "name": "program",
+            "description": "",
+            "remoteName": "program",
+            "types": [
+              "groupby",
+              "billingScope"
+            ],
+            "format": "",
+            "dataType" : "string",
+            "filter": {
+              "criteria" : "not-equals",
+              "startDate" : "2020-09-04T18:24:40.915Z",
+              "endDate" : "2022-09-04T18:24:40.915Z",
+              "values" : [
+                "offer-sunda"
+              ]
+            }
+          },
+          {
+            "index": 7,
+            "name": "paymentMethod",
+            "description": "",
+            "remoteName": "orderPaymentMethod",
+            "types": [
+              "modifier"
+            ],
+            "format": "",
+            "dataType" : "string"
+          },
+          {
+            "index": 8,
+            "name": "orderAmount",
+            "description": "",
+            "remoteName": "orderValue",
+            "types": [
+              "value",
+              "metric"
+            ],
+            "format": "",
+            "dataType" : "float"
+          },
+          {
+            "index": 9,
+            "name": "pass-flag",
+            "description": "",
+            "remoteName": "orderInfo",
+            "types": [
+              "info"
+            ],
+            "format": "",
+            "dataType" : "string"
+          },
+          {
+            "index": 10,
+            "name": "boolValue",
+            "description": "",
+            "remoteName": "valueBooleanFlag",
+            "types": [
+              "value"
+            ],
+            "format": "",
+            "dataType" : "bool"
+          },
+          {
+            "index": 11,
+            "name": "intValue",
+            "description": "",
+            "remoteName": "valueInteger",
+            "types": [
+              "value"
+            ],
+            "format": "",
+            "dataType" : "int"
+          }
+        ]
+      }
+    ]
+  }
+]

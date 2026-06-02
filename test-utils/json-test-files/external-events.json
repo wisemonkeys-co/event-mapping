@@ -1,0 +1,26 @@
+[
+  {
+    "date": "2023-10-02T09:00:00.000Z",
+    "accountId": "63167b308e1ef661f7b7e913",
+    "company": {
+      "id": "63167b308e1ef661f7b7abcd",
+      "cnpj": "000.000.0001-00",
+      "companyName": "Wise Monkeys ltda",
+      "fantasyName": "Wise Monkeys"
+    },
+    "order": {
+      "id": "654d11c40aaa37fada8f7436",
+      "value": 100,
+      "paymentMethod": "credit_card"
+    },
+    "serviceId": "minu-offer-transaction",
+    "program": "minu-offer",
+    "prizes": [
+      {
+        "alianceName": "uber",
+        "name": "Uber",
+        "value": 200
+      }
+    ]
+  }
+]

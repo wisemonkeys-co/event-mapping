@@ -14,7 +14,6 @@ func MapFunctions() (functions map[string]goval.ExpressionFunction) {
 	functions["getRangeValue"] = getRangeValue
 	functions["strToInt"] = strToInt
 	functions["min"] = min
-	functions["getItemFromStringArray"] = getItemFromStringArray
 	functions["parseFloat"] = parseFloat
 	return
 }
@@ -68,16 +67,6 @@ func min(args ...any) (any, error) {
 		return v2, err
 	}
 	return math.Min(v1, v2), nil
-}
-
-func getItemFromStringArray(args ...any) (data any, err error) {
-	array := args[0].([]string)
-	index, err := getInteger(args[1])
-	if err != nil {
-		return
-	}
-	data = array[index]
-	return
 }
 
 func parseFloat(args ...any) (data any, err error) {

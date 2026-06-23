@@ -390,7 +390,7 @@ func extractStringFloatMapListFromLineRecord(lineRecord []string, mappedFields [
 			vars["event"] = eventKVPair
 			result, errEval := eval.Evaluate(mappedField.Expression, vars, MapFunctions())
 			if errEval != nil {
-				floatMap[mappedField.Name] = 0
+				floatMap[mappedField.Name] = math.NaN()
 			} else {
 				floatMap[mappedField.Name] = result.(float64)
 			}
@@ -399,7 +399,7 @@ func extractStringFloatMapListFromLineRecord(lineRecord []string, mappedFields [
 			fieldValue, err := strconv.ParseFloat(str, 64)
 			// TODO Deve ser classificado como válido ou inválido?
 			if err != nil {
-				floatMap[mappedField.Name] = 0
+				floatMap[mappedField.Name] = math.NaN()
 			} else {
 				floatMap[mappedField.Name] = fieldValue
 			}

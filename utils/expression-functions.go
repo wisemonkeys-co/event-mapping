@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math"
 	"strconv"
+	"time"
 
 	"github.com/wisemonkeys-co/goval"
 )
@@ -15,6 +16,8 @@ func MapFunctions() (functions map[string]goval.ExpressionFunction) {
 	functions["strToInt"] = strToInt
 	functions["min"] = min
 	functions["parseFloat"] = parseFloat
+	functions["isoWeekFromIsoDate"] = isoWeekFromIsoDate
+	functions["isoWeekFromYearMothDayStrings"] = isoWeekFromYearMothDayStrings
 	return
 }
 
@@ -106,4 +109,40 @@ func getInteger(unk any) (int, error) {
 	default:
 		return 0, errors.New("non-numeric type could not be converted to float")
 	}
+}
+
+// isoWeekFromIsoDate:
+// receives the iso date
+// returns the iso week
+// Example:
+// consider event.date = "2026-06-23T14:30:00Z"
+// isoWeekFromIsoDate(event.date)
+func isoWeekFromIsoDate(args ...any) (any, error) {
+	dateStr := args[0].(string)
+	date, err := time.ParseInLocation(time.RFC3339, dateStr, nil)
+	if err != nil {
+		return "", err
+	}
+	year, week := date.ISOWeek()
+	return fmt.Sprintf("%d-%d", year, week), nil
+}
+
+// isoWeekFromYearMothDayStrings: receives the year, month, and date as strings
+// Return the iso week
+// Example:
+// consider event.date = "2026-06-23T14:30:00Z"
+// isoWeekFromStrs(event.date[0:4], event.date[5:7], event.date[8:10])
+func isoWeekFromYearMothDayStrings(args ...any) (any, error) {
+	if len(args) < 3 {
+		return "", fmt.Errorf("expect year, month and day as params but received %d params", len(args))
+	}
+	yearStr := args[0].(string)
+	monthStr := args[1].(string)
+	dayStr := args[2].(string)
+	date, err := time.ParseInLocation("20060102", yearStr+monthStr+dayStr, nil)
+	if err != nil {
+		return "", err
+	}
+	year, week := date.ISOWeek()
+	return fmt.Sprintf("%d-%d", year, week), nil
 }

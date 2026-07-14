@@ -20,28 +20,28 @@ func GetRecordMap(db DbInterface, realmName string, event string) (recMap types.
 	if eventConfig.TpName != "" {
 		recMap.TpName = eventConfig.TpName
 	}
-	for i, f := range eventConfig.FieldMapping {
-		if strings.Contains(f.RemoteName, ".$") {
-			recMap.SplitEventField, err = selectNeastedArrayAddress(recMap.SplitEventField, f.RemoteName)
+	for i, fieldMappingItem := range eventConfig.FieldMapping {
+		if strings.Contains(fieldMappingItem.RemoteName, ".$") {
+			recMap.SplitEventField, err = selectNeastedArrayAddress(recMap.SplitEventField, fieldMappingItem.RemoteName)
 			if err != nil {
 				err = fmt.Errorf("%s real name %s", err.Error(), realmName)
 				return
 			}
-			eventConfig.FieldMapping[i].RemoteName = strings.Replace(f.RemoteName, ".$", "", -1)
-			f.RemoteName = eventConfig.FieldMapping[i].RemoteName
+			eventConfig.FieldMapping[i].RemoteName = strings.Replace(fieldMappingItem.RemoteName, ".$", "", -1)
+			fieldMappingItem.RemoteName = eventConfig.FieldMapping[i].RemoteName
 		}
-		unique := len(f.Types) == 1
-		for _, t := range f.Types {
+		unique := len(fieldMappingItem.Types) == 1
+		for _, fieldMappingTypeItem := range fieldMappingItem.Types {
 			recFieldItem := types.RecordField{
-				Index:      f.Index,
-				Name:       f.Name,
-				RemoteName: f.RemoteName,
-				Format:     f.Format,
-				DataType:   f.DataType,
+				Index:      fieldMappingItem.Index,
+				Name:       fieldMappingItem.Name,
+				RemoteName: fieldMappingItem.RemoteName,
+				Format:     fieldMappingItem.Format,
+				DataType:   fieldMappingItem.DataType,
 				Unique:     unique,
-				Expression: f.Expression,
+				Expression: fieldMappingItem.Expression,
 			}
-			switch t {
+			switch fieldMappingTypeItem {
 			case "id":
 				recMap.Id = append(recMap.Id, recFieldItem)
 				recMap.IdIndex = append(recMap.IdIndex, recFieldItem)
@@ -49,7 +49,7 @@ func GetRecordMap(db DbInterface, realmName string, event string) (recMap types.
 				recMap.Date = recFieldItem
 			case "count":
 				recMap.Count = recFieldItem
-				recMap.CountIndex = f.Index
+				recMap.CountIndex = fieldMappingItem.Index
 			case "customer":
 				recMap.Customer = append(recMap.Customer, recFieldItem)
 			case "TPCustomer":
@@ -72,8 +72,8 @@ func GetRecordMap(db DbInterface, realmName string, event string) (recMap types.
 				recMap.BillingScope = append(recMap.BillingScope, recFieldItem)
 			}
 		}
-		if f.Filter != nil && f.Filter.StartDate.Before(time.Now()) && f.Filter.EndDate.After(time.Now()) {
-			recMap.FieldFilters = append(recMap.FieldFilters, buildFieldFilterItem(f))
+		if fieldMappingItem.Filter != nil && fieldMappingItem.Filter.StartDate.Before(time.Now()) && fieldMappingItem.Filter.EndDate.After(time.Now()) {
+			recMap.FieldFilters = append(recMap.FieldFilters, buildFieldFilterItem(fieldMappingItem))
 		}
 	}
 	return

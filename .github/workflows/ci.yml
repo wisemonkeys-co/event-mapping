@@ -5,7 +5,7 @@ on:
     types: 
       - closed
 env:
-  TAG: v0.0.1
+  TAG: v0.0.2
 jobs:
   test:
     uses: ./.github/workflows/test.yml

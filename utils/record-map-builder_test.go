@@ -77,7 +77,7 @@ func TestSelectNeastedArrayAddress(t *testing.T) {
 func TestGetRecordMapForMapRecordSuccess(t *testing.T) {
 	jsonFiles, err := testutils.ReadJsonFiles()
 	if err != nil {
-		t.Error(t)
+		t.Error(err)
 		return
 	}
 	realms := make([]types.Realm, 0)
@@ -104,6 +104,55 @@ func TestGetRecordMapForMapRecordSuccess(t *testing.T) {
 	testutils.AssertEquals(t, recordMap.Date.Index, realms[0].Events[0].FieldMapping[1].Index)
 	testutils.AssertEquals(t, recordMap.Date.Index, realms[0].Events[0].FieldMapping[1].Index)
 	testutils.AssertEquals(t, fmt.Sprintf("%+v", eventConfig), fmt.Sprintf("%+v", realms[0].Events[0]))
+}
+
+func TestGetRecordMapForMapRecordWithSplitEventFieldSuccess(t *testing.T) {
+	realmName := "bonuz-br"
+	eventName := "test-value-variables"
+	eventData, eventLocation, err := testutils.GetEventDataFromJsonFiles(eventName, realmName)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	dbMock := &testutils.DBMock{
+		LocationToReturn:         eventLocation,
+		EventMappingDataToReturn: eventData,
+	}
+	recordMap, _, err := GetRecordMap(dbMock, realmName, eventName)
+	if err != nil {
+		t.Error(t)
+		return
+	}
+	testutils.AssertEquals(t, recordMap.Realm, realmName)
+	testutils.AssertEquals(t, recordMap.Event, eventName)
+	testutils.AssertEquals(t, recordMap.SplitEventField, "contracts")
+	testutils.AssertEquals(t, len(recordMap.Id), 1)
+	testutils.AssertEquals(t, recordMap.Id[0].Unique, true)
+}
+
+func TestGetRecordMapForMapRecordWithSplitEventFieldNeastedArraySuccess(t *testing.T) {
+	realmName := "bonuz-br"
+	eventName := "test-split-neasted-array-with-variables"
+	eventData, eventLocation, err := testutils.GetEventDataFromJsonFiles(eventName, realmName)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	dbMock := &testutils.DBMock{
+		LocationToReturn:         eventLocation,
+		EventMappingDataToReturn: eventData,
+	}
+	recordMap, _, err := GetRecordMap(dbMock, realmName, eventName)
+	if err != nil {
+		t.Error(t)
+		return
+	}
+	testutils.AssertEquals(t, recordMap.Realm, realmName)
+	testutils.AssertEquals(t, recordMap.Event, eventName)
+	testutils.AssertEquals(t, recordMap.SplitEventField, "contracts.$.data.products")
+	testutils.AssertEquals(t, len(recordMap.Id), 2)
+	testutils.AssertEquals(t, recordMap.Id[0].Unique, true)
+	testutils.AssertEquals(t, recordMap.Id[1].Unique, true)
 }
 
 func TestGetRecordMapForLineRecordSuccess(t *testing.T) {

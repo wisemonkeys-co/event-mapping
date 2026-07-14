@@ -20,51 +20,60 @@ func GetRecordMap(db DbInterface, realmName string, event string) (recMap types.
 	if eventConfig.TpName != "" {
 		recMap.TpName = eventConfig.TpName
 	}
-	for i, f := range eventConfig.FieldMapping {
-		if strings.Contains(f.RemoteName, ".$") {
-			recMap.SplitEventField, err = selectNeastedArrayAddress(recMap.SplitEventField, f.RemoteName)
+	for i, fieldMappingItem := range eventConfig.FieldMapping {
+		if strings.Contains(fieldMappingItem.RemoteName, ".$") {
+			recMap.SplitEventField, err = selectNeastedArrayAddress(recMap.SplitEventField, fieldMappingItem.RemoteName)
 			if err != nil {
 				err = fmt.Errorf("%s real name %s", err.Error(), realmName)
 				return
 			}
-			eventConfig.FieldMapping[i].RemoteName = strings.Replace(f.RemoteName, ".$", "", -1)
-			f.RemoteName = eventConfig.FieldMapping[i].RemoteName
+			eventConfig.FieldMapping[i].RemoteName = strings.Replace(fieldMappingItem.RemoteName, ".$", "", -1)
+			fieldMappingItem.RemoteName = eventConfig.FieldMapping[i].RemoteName
 		}
-		unique := len(f.Types) == 1
-		for _, t := range f.Types {
-			switch t {
+		unique := len(fieldMappingItem.Types) == 1
+		for _, fieldMappingTypeItem := range fieldMappingItem.Types {
+			recFieldItem := types.RecordField{
+				Index:      fieldMappingItem.Index,
+				Name:       fieldMappingItem.Name,
+				RemoteName: fieldMappingItem.RemoteName,
+				Format:     fieldMappingItem.Format,
+				DataType:   fieldMappingItem.DataType,
+				Unique:     unique,
+				Expression: fieldMappingItem.Expression,
+			}
+			switch fieldMappingTypeItem {
 			case "id":
-				recMap.Id = append(recMap.Id, types.RecordField{Index: f.Index, Name: f.Name, RemoteName: f.RemoteName, Format: f.Format, Unique: unique})
-				recMap.IdIndex = append(recMap.IdIndex, types.RecordField{Index: f.Index, Name: f.Name, RemoteName: f.RemoteName, Format: f.Format})
+				recMap.Id = append(recMap.Id, recFieldItem)
+				recMap.IdIndex = append(recMap.IdIndex, recFieldItem)
 			case "date":
-				recMap.Date = types.RecordField{Index: f.Index, Name: f.Name, RemoteName: f.RemoteName, Format: f.Format}
+				recMap.Date = recFieldItem
 			case "count":
-				recMap.Count = types.RecordField{Index: f.Index, Name: f.Name, RemoteName: f.RemoteName, Format: f.Format}
-				recMap.CountIndex = f.Index
+				recMap.Count = recFieldItem
+				recMap.CountIndex = fieldMappingItem.Index
 			case "customer":
-				recMap.Customer = append(recMap.Customer, types.RecordField{Index: f.Index, Name: f.Name, RemoteName: f.RemoteName, Format: f.Format})
+				recMap.Customer = append(recMap.Customer, recFieldItem)
 			case "TPCustomer":
-				recMap.TPCustomer = append(recMap.TPCustomer, types.RecordField{Index: f.Index, Name: f.Name, RemoteName: f.RemoteName, Format: f.Format})
+				recMap.TPCustomer = append(recMap.TPCustomer, recFieldItem)
 			case "modifier":
-				recMap.Modifiers = append(recMap.Modifiers, types.RecordField{Index: f.Index, Name: f.Name, RemoteName: f.RemoteName, Format: f.Format})
+				recMap.Modifiers = append(recMap.Modifiers, recFieldItem)
 			case "service":
-				recMap.Service = append(recMap.Service, types.RecordField{Index: f.Index, Name: f.Name, RemoteName: f.RemoteName, Format: f.Format})
+				recMap.Service = append(recMap.Service, recFieldItem)
 			case "metric":
-				recMap.Metrics = append(recMap.Metrics, types.RecordField{Index: f.Index, Name: f.Name, RemoteName: f.RemoteName, Format: f.Format})
-				recMap.Variables = append(recMap.Variables, types.RecordField{Index: f.Index, Name: f.Name, RemoteName: f.RemoteName, Format: f.Format, Value: "", DataType: f.DataType})
+				recMap.Metrics = append(recMap.Metrics, recFieldItem)
+				recMap.Variables = append(recMap.Variables, recFieldItem)
 			case "value":
-				recMap.Values = append(recMap.Values, types.RecordField{Index: f.Index, Name: f.Name, RemoteName: f.RemoteName, Format: f.Format})
-				recMap.Variables = append(recMap.Variables, types.RecordField{Index: f.Index, Name: f.Name, RemoteName: f.RemoteName, Format: f.Format, Value: "", DataType: f.DataType})
+				recMap.Values = append(recMap.Values, recFieldItem)
+				recMap.Variables = append(recMap.Variables, recFieldItem)
 			case "info":
-				recMap.Info = append(recMap.Info, types.RecordField{Index: f.Index, Name: f.Name, RemoteName: f.RemoteName, Format: f.Format})
+				recMap.Info = append(recMap.Info, recFieldItem)
 			case "groupby":
-				recMap.GroupBy = append(recMap.GroupBy, types.RecordField{Index: f.Index, Name: f.Name, RemoteName: f.RemoteName, Format: f.Format})
+				recMap.GroupBy = append(recMap.GroupBy, recFieldItem)
 			case "billingScope":
-				recMap.BillingScope = append(recMap.BillingScope, types.RecordField{Index: f.Index, Name: f.Name, RemoteName: f.RemoteName, Format: f.Format})
+				recMap.BillingScope = append(recMap.BillingScope, recFieldItem)
 			}
 		}
-		if f.Filter != nil && f.Filter.StartDate.Before(time.Now()) && f.Filter.EndDate.After(time.Now()) {
-			recMap.FieldFilters = append(recMap.FieldFilters, buildFieldFilterItem(f))
+		if fieldMappingItem.Filter != nil && fieldMappingItem.Filter.StartDate.Before(time.Now()) && fieldMappingItem.Filter.EndDate.After(time.Now()) {
+			recMap.FieldFilters = append(recMap.FieldFilters, buildFieldFilterItem(fieldMappingItem))
 		}
 	}
 	return

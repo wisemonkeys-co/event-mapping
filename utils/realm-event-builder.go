@@ -23,6 +23,7 @@ func BuildRealmEventFromMap(event map[string]any, eventConfig types.Event, recor
 	}()
 	realmEvent.Realm = recordMap.Realm
 	realmEvent.RealmEvent = recordMap.Event
+	realmEvent.Raw = GetEventLineStringFromMap(event, eventConfig)
 	realmEvent.RealmID = extractStringFromMap(event, recordMap.Id, "|")
 	realmEvent.RealmDate, err = GetRealmEventDate(event, recordMap)
 	if err != nil {
@@ -49,7 +50,6 @@ func BuildRealmEventFromMap(event map[string]any, eventConfig types.Event, recor
 	realmEvent.GroupBy = extractStringListFromMap(event, recordMap.GroupBy)
 	realmEvent.BillingScope = extractStringListFromMap(event, recordMap.BillingScope)
 	realmEvent.Info = extractStringMapListFromMap(event, recordMap.Info, eventKVPair)
-	realmEvent.Raw = GetEventLineStringFromMap(event, eventConfig)
 	return
 }
 

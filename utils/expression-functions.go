@@ -10,6 +10,15 @@ import (
 	"github.com/wisemonkeys-co/goval"
 )
 
+var supportedDateFormats = []string{
+	"20060102",
+	time.DateOnly,
+	"2006-01-02T15:04:05.999",
+	time.RFC3339,
+}
+
+var lastUsedDateStringFormat = supportedDateFormats[2]
+
 func MapFunctions() (functions map[string]goval.ExpressionFunction) {
 	functions = make(map[string]goval.ExpressionFunction)
 	functions["getRangeValue"] = getRangeValue
@@ -112,16 +121,33 @@ func getInteger(unk any) (int, error) {
 }
 
 // isoWeekFromIsoDate:
-// receives the iso date
+// receives the iso date and optionally the location string (fallback to time.Local)
 // returns the iso week
 // Example:
 // consider event.date = "2026-06-23T14:30:00Z"
 // isoWeekFromIsoDate(event.date)
+// isoWeekFromIsoDate(event.date, "Asia/Tokyo")
 func isoWeekFromIsoDate(args ...any) (any, error) {
+	var err error
 	dateStr := args[0].(string)
-	date, err := time.ParseInLocation(time.RFC3339, dateStr, nil)
+	location := time.Local
+	if len(args) == 2 {
+		locationStr := args[1].(string)
+		location, err = time.LoadLocation(locationStr)
+		if err != nil {
+			return "", err
+		}
+	}
+	date, err := time.ParseInLocation(lastUsedDateStringFormat, dateStr, location)
 	if err != nil {
-		return "", err
+		var i int
+		for i = -1; i+1 < len(supportedDateFormats) && err != nil; i++ {
+			date, err = time.ParseInLocation(supportedDateFormats[i+1], dateStr, location)
+		}
+		if err != nil {
+			return "", err
+		}
+		lastUsedDateStringFormat = supportedDateFormats[i]
 	}
 	year, week := date.ISOWeek()
 	return fmt.Sprintf("%d-%d", year, week), nil
@@ -131,7 +157,7 @@ func isoWeekFromIsoDate(args ...any) (any, error) {
 // Return the iso week
 // Example:
 // consider event.date = "2026-06-23T14:30:00Z"
-// isoWeekFromStrs(event.date[0:4], event.date[5:7], event.date[8:10])
+// isoWeekFromYearMothDayStrings(event.date[0:4], event.date[5:7], event.date[8:10])
 func isoWeekFromYearMothDayStrings(args ...any) (any, error) {
 	if len(args) < 3 {
 		return "", fmt.Errorf("expect year, month and day as params but received %d params", len(args))

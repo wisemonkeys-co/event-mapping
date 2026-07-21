@@ -121,11 +121,12 @@ func getInteger(unk any) (int, error) {
 }
 
 // isoWeekFromIsoDate:
-// receives the iso date
+// receives the iso date and optionally the location string (fallback to time.Local)
 // returns the iso week
 // Example:
 // consider event.date = "2026-06-23T14:30:00Z"
 // isoWeekFromIsoDate(event.date)
+// isoWeekFromIsoDate(event.date, "Asia/Tokyo")
 func isoWeekFromIsoDate(args ...any) (any, error) {
 	var err error
 	dateStr := args[0].(string)

@@ -7,15 +7,15 @@ import (
 )
 
 type RealmEvent struct {
-	Realm              string                 `json:"realm" bson:"realm"`
-	RealmEvent         string                 `json:"realmEvent" bson:"realmEvent"`
-	RealmID            string                 `json:"realmId" bson:"realmId"`
-	RealmDate          time.Time              `json:"realmDate" bson:"realmDate"`
-	Count              int32                  `json:"count" bson:"count"`
-	Customer           []string               `json:"customer" bson:"customer"`
-	TpCustomer         []string               `json:"tpCustomer" bson:"tpCustomer"`
-	Metric             []map[string]float64   `json:"metric" bson:"metric"`
-	Value              []map[string]float64   `json:"value" bson:"value"`
+	Realm      string    `json:"realm" bson:"realm"`
+	RealmEvent string    `json:"realmEvent" bson:"realmEvent"`
+	RealmID    string    `json:"realmId" bson:"realmId"`
+	RealmDate  time.Time `json:"realmDate" bson:"realmDate"`
+	Count      int32     `json:"count" bson:"count"`
+	Customer   []string  `json:"customer" bson:"customer"`
+	//TpCustomer         []string               `json:"tpCustomer" bson:"tpCustomer"`
+	Metric []map[string]float64 `json:"metric" bson:"metric"`
+	//Value              []map[string]float64   `json:"value" bson:"value"`
 	Variables          map[string]interface{} `json:"variables"`
 	Modifier           []map[string]string    `json:"modifier" bson:"modifier"`
 	Service            []string               `json:"service" bson:"service"`

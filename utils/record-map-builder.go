@@ -62,7 +62,7 @@ func GetRecordMap(db DbInterface, realmName string, event string) (recMap types.
 				recMap.Metrics = append(recMap.Metrics, recFieldItem)
 				recMap.Variables = append(recMap.Variables, recFieldItem)
 			case "value":
-				recMap.Values = append(recMap.Values, recFieldItem)
+				//recMap.Values = append(recMap.Values, recFieldItem)
 				recMap.Variables = append(recMap.Variables, recFieldItem)
 			case "info":
 				recMap.Info = append(recMap.Info, recFieldItem)

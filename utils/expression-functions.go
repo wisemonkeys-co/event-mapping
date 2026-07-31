@@ -25,7 +25,7 @@ func MapFunctions() (functions map[string]goval.ExpressionFunction) {
 	functions["strToInt"] = strToInt
 	functions["min"] = min
 	functions["parseFloat"] = parseFloat
-	functions["isoWeekFromIsoDate"] = isoWeekFromIsoDate
+	functions["ISOWeek"] = isoWeekFromIsoDate
 	functions["isoWeekFromYearMothDayStrings"] = isoWeekFromYearMothDayStrings
 	return
 }

@@ -54,7 +54,7 @@ var recorMap = types.RecordMap{
 			Value:      "",
 		},
 	},
-	TPCustomer: []types.RecordField{},
+	//TPCustomer: []types.RecordField{},
 	Modifiers: []types.RecordField{
 		{
 			Index:      7,

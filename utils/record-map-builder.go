@@ -52,8 +52,8 @@ func GetRecordMap(db DbInterface, realmName string, event string) (recMap types.
 				recMap.CountIndex = fieldMappingItem.Index
 			case "customer":
 				recMap.Customer = append(recMap.Customer, recFieldItem)
-			case "TPCustomer":
-				recMap.TPCustomer = append(recMap.TPCustomer, recFieldItem)
+			// case "TPCustomer":
+			// 	recMap.TPCustomer = append(recMap.TPCustomer, recFieldItem)
 			case "modifier":
 				recMap.Modifiers = append(recMap.Modifiers, recFieldItem)
 			case "service":

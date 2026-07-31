@@ -16,18 +16,18 @@ type RealmEvent struct {
 	//TpCustomer         []string               `json:"tpCustomer" bson:"tpCustomer"`
 	Metric []map[string]float64 `json:"metric" bson:"metric"`
 	//Value              []map[string]float64   `json:"value" bson:"value"`
-	Variables          map[string]interface{} `json:"variables"`
-	Modifier           []map[string]string    `json:"modifier" bson:"modifier"`
-	Service            []string               `json:"service" bson:"service"`
-	GroupBy            []string               `json:"groupBy" bson:"groupBy"`
-	BillingScope       []string               `json:"billingScope" bson:"billingScope"`
-	Info               []map[string]string    `json:"info" bson:"info"`
-	AccountID          bson.ObjectID          `json:"account,omitempty" bson:"account"`
-	ThirdPartAccountID bson.ObjectID          `json:"tpAccount,omitempty" bson:"tpAccount"`
-	TpName             string                 `json:"tpName,omitempty" bson:"tpName"`
-	MetaData           MetaData               `json:"metadata" bson:"metadata"`
-	EventSource        string                 `json:"eventSource" bson:"eventSource"`
-	Raw                string                 `json:"raw" bson:"raw"`
+	Variables    map[string]interface{} `json:"variables"`
+	Modifier     []map[string]string    `json:"modifier" bson:"modifier"`
+	Service      []string               `json:"service" bson:"service"`
+	GroupBy      []string               `json:"groupBy" bson:"groupBy"`
+	BillingScope []string               `json:"billingScope" bson:"billingScope"`
+	Info         []map[string]string    `json:"info" bson:"info"`
+	AccountID    bson.ObjectID          `json:"account,omitempty" bson:"account"`
+	//ThirdPartAccountID bson.ObjectID          `json:"tpAccount,omitempty" bson:"tpAccount"`
+	TpName      string   `json:"tpName,omitempty" bson:"tpName"`
+	MetaData    MetaData `json:"metadata" bson:"metadata"`
+	EventSource string   `json:"eventSource" bson:"eventSource"`
+	Raw         string   `json:"raw" bson:"raw"`
 }
 
 type MetaData struct {

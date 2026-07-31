@@ -14,16 +14,16 @@ type RecordMap struct {
 	CountIndex      int
 	TpName          string
 	Customer        []RecordField
-	TPCustomer      []RecordField
-	Modifiers       []RecordField
-	Info            []RecordField
-	Service         []RecordField
-	Metrics         []RecordField
-	Values          []RecordField
-	Variables       []RecordField
-	GroupBy         []RecordField
-	BillingScope    []RecordField
-	FieldFilters    []FieldFilter
+	//TPCustomer      []RecordField
+	Modifiers []RecordField
+	Info      []RecordField
+	Service   []RecordField
+	Metrics   []RecordField
+	//Values          []RecordField
+	Variables    []RecordField
+	GroupBy      []RecordField
+	BillingScope []RecordField
+	FieldFilters []FieldFilter
 }
 
 type RecordField struct {

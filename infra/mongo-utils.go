@@ -14,11 +14,12 @@ import (
 func FindRealmEventMappingData(client *mongo.Client, realmName string, event string) (eventMappingData types.Event, location string, err error) {
 	queryTimeout, cancel := context.WithTimeout(context.Background(), 60*time.Second)
 	defer cancel()
+	// "events.$" traz o evento casado inteiro (tpName e fieldMapping inclusive). O DocumentDB recusa
+	// "events.fieldMapping.$": aplica o $ ao array interno fieldMapping, que a consulta não filtra.
 	opts := options.FindOne().
 		SetProjection(bson.M{
-			"location":              1,
-			"events.fieldMapping.$": 1,
-			"events.tpName":         1,
+			"location": 1,
+			"events.$": 1,
 		})
 	findResult := client.
 		Database(os.Getenv("WISE_OCS_DB_NAME")).

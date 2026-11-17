@@ -1288,6 +1288,368 @@
             "dataType": "bool"
           }
         ]
+      },
+      {
+        "name": "test-split-array",
+        "tpName": "test",
+        "description": "Test the split event based on array items",
+        "sortIndex": 2,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "id",
+            "description": "",
+            "remoteName": "_id",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "metadata.created",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999",
+            "dataType": "date"
+          },
+          {
+            "index": 2,
+            "name": "client",
+            "description": "",
+            "remoteName": "client.name",
+            "types": [
+              "customer"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 3,
+            "name": "service",
+            "description": "",
+            "remoteName": "contracts.$.data.product",
+            "types": [
+              "service"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 4,
+            "name": "accountCode",
+            "description": "",
+            "remoteName": "accountCode",
+            "types": [
+              "modifier"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 5,
+            "name": "serviceValue",
+            "description": "",
+            "remoteName": "contracts.$.value",
+            "types": [
+              "metric"
+            ],
+            "format": "",
+            "dataType": "float"
+          }
+        ]
+      },
+      {
+        "name": "test-split-array-multi-index",
+        "tpName": "test",
+        "description": "Test the split event based on array items",
+        "sortIndex": 2,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "id",
+            "description": "",
+            "remoteName": "_id",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "metadata.created",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999",
+            "dataType": "date"
+          },
+          {
+            "index": 2,
+            "name": "client",
+            "description": "",
+            "remoteName": "client.name",
+            "types": [
+              "customer"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 3,
+            "name": "service",
+            "description": "",
+            "remoteName": "contracts.$.data.product",
+            "types": [
+              "service"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 4,
+            "name": "accountCode",
+            "description": "",
+            "remoteName": "accountCode",
+            "types": [
+              "modifier"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 5,
+            "name": "serviceValue",
+            "description": "",
+            "remoteName": "contracts.$.value",
+            "types": [
+              "metric"
+            ],
+            "format": "",
+            "dataType": "float"
+          },
+          {
+            "index": 6,
+            "name": "sufixId",
+            "description": "",
+            "remoteName": "contracts.$.sufixId",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "int"
+          }
+        ]
+      },
+      {
+        "name": "test-split-neasted-array-with-neasted-id",
+        "tpName": "test",
+        "description": "Test the split event based on neasted array with neasted ids",
+        "sortIndex": 9,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "neastedId",
+            "description": "",
+            "remoteName": "contracts.$.data.products.$.sku",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "metadata.created",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999",
+            "dataType": "date"
+          },
+          {
+            "index": 2,
+            "name": "client",
+            "description": "",
+            "remoteName": "client.name",
+            "types": [
+              "customer"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 3,
+            "name": "id",
+            "description": "",
+            "remoteName": "_id",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 4,
+            "name": "accountCode",
+            "description": "",
+            "remoteName": "accountCode",
+            "types": [
+              "modifier",
+              "value"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 5,
+            "name": "service",
+            "description": "",
+            "remoteName": "contracts.$.data.products.$.service",
+            "types": [
+              "service"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 6,
+            "name": "serviceValue",
+            "description": "",
+            "remoteName": "contracts.$.value",
+            "types": [
+              "value"
+            ],
+            "format": "",
+            "dataType": "float"
+          }
+        ]
+      },
+      {
+        "name": "test-id-on-root",
+        "tpName": "test",
+        "description": "Test array items with no ids",
+        "sortIndex": 9,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "id",
+            "description": "",
+            "remoteName": "_id",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "float"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "metadata.created",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999",
+            "dataType": "date"
+          },
+          {
+            "index": 2,
+            "name": "client",
+            "description": "",
+            "remoteName": "client.name",
+            "types": [
+              "id",
+              "customer"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 3,
+            "name": "service",
+            "description": "",
+            "remoteName": "contracts.$.data.product",
+            "types": [
+              "service"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 4,
+            "name": "accountCode",
+            "description": "",
+            "remoteName": "accountCode",
+            "types": [
+              "modifier",
+              "value"
+            ],
+            "format": "",
+            "dataType": "string"
+          }
+        ]
+      },
+      {
+        "name": "test-split-array-id-prefix-on-root",
+        "tpName": "test",
+        "description": "Test the id sufix when a root id field name starts with the split field name (contractsBatchId x contracts)",
+        "sortIndex": 9,
+        "fieldMapping": [
+          {
+            "index": 0,
+            "name": "batchId",
+            "description": "",
+            "remoteName": "contractsBatchId",
+            "types": [
+              "id"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 1,
+            "name": "date",
+            "description": "",
+            "remoteName": "metadata.created",
+            "types": [
+              "date"
+            ],
+            "format": "2006-01-02T15:04:05.999",
+            "dataType": "date"
+          },
+          {
+            "index": 2,
+            "name": "service",
+            "description": "",
+            "remoteName": "contracts.$.data.product",
+            "types": [
+              "service"
+            ],
+            "format": "",
+            "dataType": "string"
+          },
+          {
+            "index": 3,
+            "name": "serviceValue",
+            "description": "",
+            "remoteName": "contracts.$.value",
+            "types": [
+              "metric"
+            ],
+            "format": "",
+            "dataType": "float"
+          }
+        ]
       }
     ]
   }
